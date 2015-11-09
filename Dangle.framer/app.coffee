@@ -1,6 +1,16 @@
 # This imports all the layers for "Framer Dangle" into framerDangleLayers1
 $ = Framer.Importer.load "imported/Framer Dangle"
 
+$.home.visible = true
+$.home.states.add
+	leave: { opacity: 0}
+$.tasks.visible = true
+$.tasks.states.add
+	appear: { opacity: 1}
+###
+Begin Add Tasks Grid
+###
+
 #grid layers
 housebox = new Layer
 	x: 60, y: 350, width: 274, height: 278, opacity: 0
@@ -14,17 +24,23 @@ backArrow = new Layer
 	opacity: 0
 #nav bar layers
 taskBox = new Layer
-	x: 237, y: 1240, width: 52, height: 55, opacity: 0
+	x: 237, y: 1240, width: 62, height: 65, opacity: 0
+
+taskBox.on Events.Click, ->
+	$.tasks.states.switch("appear")
+	$.home.states.switch("appear")
+	
 
 
 #All Household
 
+$.NavBottom.visible = true
 #make household come to life
 $.household.visible = true
 
 #hide household
 $.household.opacity = 0
-$.tasks.opacity = 1
+
 
 #add animation options
 $.tasks.states.animationOptions =
@@ -109,6 +125,10 @@ custombox.on Events.Click, ->
 backArrow.on Events.Click, ->
 	$.custom.states.switch("hide")
 	$.tasks.states.switch("show")
+
+###
+End Add Tasks Grid
+###
 
 	
 
