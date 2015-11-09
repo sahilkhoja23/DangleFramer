@@ -8,6 +8,8 @@ ecbox = new Layer
 	x: 372, y: 321, width: 374, height: 378, opacity: 0
 schoolbox = new Layer
 	x: 14, y: 684, width: 374, height: 377, opacity: 0
+custombox = new Layer
+	x: 372, y: 684, width: 374, height: 377, opacity: 0
 backArrow = new Layer
 	opacity: 0
 #nav bar layers
@@ -85,6 +87,27 @@ schoolbox.on Events.Click, ->
 #go back
 backArrow.on Events.Click, ->
 	$.school.states.switch("hide")
+	$.tasks.states.switch("show")
+
+#All Custom
+
+#make extracurricular come to life
+$.custom.visible = true
+
+#hide ec
+$.custom.opacity = 0
+
+#animation for exc click
+$.custom.states.add 
+	detail: { opacity: 1 }
+	hide: {opacity: 0}
+
+custombox.on Events.Click, -> 
+	$.tasks.states.switch("detail")
+	$.custom.states.switch("detail")
+#go back
+backArrow.on Events.Click, ->
+	$.custom.states.switch("hide")
 	$.tasks.states.switch("show")
 
 	
